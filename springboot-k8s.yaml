@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: springboot-k8s  #必选，资源名称
+spec:
+  # 节点数，设置为多个可以实现负载均衡效果
+  replicas: 2
+  selector:
+    app: springboot-k8s
+  template:
+    metadata:
+      labels:
+        app: springboot-k8s
+    spec:
+      containers:
+        - name: demo
+          #镜像名
+          image: springboot-k8s
+          #本地有镜像就不会去仓库拉取
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-k8s
+  namespace: default
+  labels:
+    app: springboot-k8s
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: springboot-k8s
+  type: NodePort

@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM openjdk:11.0.7-jre
 MAINTAINER "junan.zhao <iszhaojn@gmail.com>"
 LABEL description="Spring Boot Image For K8s"
 WORKDIR /build/libs
