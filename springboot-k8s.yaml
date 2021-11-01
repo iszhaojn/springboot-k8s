@@ -4,7 +4,7 @@ metadata:
   name: springboot-k8s  #必选，资源名称
 spec:
   # 节点数，设置为多个可以实现负载均衡效果
-  replicas: 2
+  replicas: 1
   selector:
     app: springboot-k8s
   template:
@@ -19,7 +19,7 @@ spec:
           #本地有镜像就不会去仓库拉取
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 8083
 ---
 apiVersion: v1
 kind: Service
@@ -30,8 +30,8 @@ metadata:
     app: springboot-k8s
 spec:
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8083
+      targetPort: 8083
   selector:
     app: springboot-k8s
   type: NodePort
