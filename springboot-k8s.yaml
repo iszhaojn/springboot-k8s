@@ -1,7 +1,7 @@
 apiVersion: v1
-kind: ReplicationController
+kind: Deployment
 metadata:
-  name: springboot-k8s  #必选，资源名称
+  name: springboot-k8s-deployment  #必选，资源名称
 spec:
   # 节点数，设置为多个可以实现负载均衡效果
   replicas: 1
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-k8s
+  name: springboot-k8s-service
   namespace: default
   labels:
     app: springboot-k8s
