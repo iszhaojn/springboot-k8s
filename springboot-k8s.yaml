@@ -4,7 +4,7 @@ metadata:
   name: springboot-k8s-deployment  #必选，资源名称
 spec:
   # 节点数，设置为多个可以实现负载均衡效果
-  replicas: 1
+  replicas: 2
   selector:
     app: springboot-k8s
   template:
