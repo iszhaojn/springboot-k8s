@@ -1,6 +1,13 @@
 stages:
 - name: compiler
   steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: simon/spring-k8s:v1
+      registry: 127.0.0.1:34056
+- name: delpoy
+  steps:
   - applyYamlConfig:
       path: ./deployment.yaml
 timeout: 60
